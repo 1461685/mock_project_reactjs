@@ -1,12 +1,16 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import TodoForm from './components/TodoForm';
+import TodoHeader from './components/TodoHeader';
+import TodoList from './components/TodoList';
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header>
-        <h1>React Todo App</h1>
-      </header>
+    <div className="outer-box">
+      <TodoHeader />
+      <TodoForm />
+      <TodoList />
     </div>
   );
 }
