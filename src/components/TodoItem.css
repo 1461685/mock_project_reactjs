@@ -70,3 +70,10 @@
     margin-left: 10px;
     cursor: pointer;
 }
+
+
+.todo-item__complete
+{
+    text-decoration: line-through;
+    color: green;
+}

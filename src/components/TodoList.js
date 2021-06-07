@@ -52,6 +52,12 @@ const TodoList = (props) => {
         // console.log(removeItem);
     };
 
+    const completeTodo = (todo) => {
+        // console.log(!todo.completed);
+        todoItems.map((item) => (item.id === todo.id ? item.completed = !todo.completed : item));
+        console.log(todoItems);
+    };
+
     return (
         // <div className="todo-list">
         <ul className="todo-list">
@@ -69,6 +75,7 @@ const TodoList = (props) => {
                         completed={item.completed}
                         editTodo={editTodo}
                         deleteTodo={deleteTodo}
+                        completeTodo={completeTodo}
                     />)
                 ))
             }
