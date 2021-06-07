@@ -58,7 +58,7 @@ const TodoItem = (props) => {
 
         setComplete({
             id: props.id,
-            completed: event.target.value
+            completed: event.target.checked
         });
         // console.log(complete);
         props.completeTodo(complete);
@@ -79,6 +79,7 @@ const TodoItem = (props) => {
                     <div className="todo-item">
                     {/* // <div className={isCompleted ? "todo-item__complete": "todo=item"}> */}
                         <input type="checkbox" checked={complete.completed} onChange={completedTodoHandle}/>
+                        
                         <li>
                             <div className="todo-item__title">{edit.title}</div>
                         </li>
