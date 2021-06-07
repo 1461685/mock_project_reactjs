@@ -4,7 +4,7 @@ import TodoForm from './TodoForm';
 
 import './TodoList.css';
 
-const TodoList = () => {
+const TodoList = (props) => {
     
 
     const items = [
@@ -19,6 +19,7 @@ const TodoList = () => {
     // const [todoItems, setTodoItems] = useState([]);
 
     const addTodo = (item) => {
+        //RegExp test method to test whether a string val is empty or only contains spaces.
         if(!item.title || /^\s*$/.test(item.title))
         {
             return;
@@ -30,25 +31,42 @@ const TodoList = () => {
         console.log(...todoItems)
     };
 
+    const editTodo = (todo) => {
+        //RegExp test method to test whether a string val is empty or only contains spaces.
+        if(!todo.title || /^\s*$/.test(todo.title))
+        {
+            return;
+        }
+
+        const newTitle = todo.title;
+        // console.log(newTitle);
+        todoItems.map((item) => (item.id === todo.id ? item.title = newTitle : item));
+        console.log(todoItems);
+        
+    };
+
     return (
-        <div className="todo-list">
-            <ul>
-                <TodoForm onSubmit={addTodo}/>
-                {/* <TodoItem title={items[0].title} completed={items[0].completed}/>
+        // <div className="todo-list">
+        <ul className="todo-list">
+            <TodoForm onSubmit={addTodo}/>
+            {/* <TodoItem title={items[0].title} completed={items[0].completed}/>
                 <TodoItem title={items[1].title} completed={items[1].completed}/>
                 <TodoItem title={items[2].title} completed={items[2].completed}/>
                 <TodoItem title={items[3].title} completed={items[3].completed}/> */}
-                {todoItems.map(
-                    ((item) => (
-                        <TodoItem 
-                            key={item.id}
-                            title={item.title}
-                            completed={item.completed}
-                        />)
-                    ))
-                }
-            </ul>
-        </div>
+            {todoItems.map(
+                ((item) => (
+                    <TodoItem 
+                        key={item.id}
+                        id={item.id}
+                        title={item.title}
+                        completed={item.completed}
+                        editTodo={editTodo}
+                    />)
+                ))
+            }
+            {/* <TodoItem todoItems={todoItems}/> */}
+        </ul>
+        // </div>
     );
 };
 

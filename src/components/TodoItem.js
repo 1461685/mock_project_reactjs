@@ -1,22 +1,65 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './TodoItem.css';
 
+// const TodoItem = (props) => {
 const TodoItem = (props) => {
-    
+    const [isEditing, setIsEditing] = useState(false);
+    const [edit, setEdit] = useState({
+        id: null,
+        title: props.title
+    })
+
+    const editingHandle = () => {
+        console.log(props.id);
+        setIsEditing(true);
+    };
+
+    const changeValueHandle =(event) => {
+        setEdit({
+            id: props.id,
+            title: event.target.value
+        });
+
+    };
+
+    const saveValueHandle = (event) => {
+
+        setIsEditing(false);
+        console.log(edit);
+        props.editTodo(edit);
+    };
+
+    const cancelHandle = () => {
+        setEdit({title: props.title});
+        setIsEditing(false);
+    };
+
     return (
-        <div className="todo-item">
-            
-            <input type="checkbox" checked={props.completed}/>
-            <li>
-                
-                <div className="todo-item__title">{props.title}</div>
-            </li>
-            <div>
-                <button className="todo-item__btnEdit" type="button" >Edit</button> 
-                <button className="todo-item__btnDelete" type="button" >Delete</button>
-            </div>
-            
+        <div >
+            {isEditing && (
+                <li className="todo-item__save">
+                    
+                    {/* <input type="text" name="editValue" value={edit.title}  onChange={editValueHandle}></input> */}
+                    <input type="text" name="editValue" value={edit.title} onChange={changeValueHandle}></input>
+                    <button className="todo-item__btnSave" onClick={saveValueHandle}>Save</button>
+                    <button className="todo-item__btnDelete" onClick={cancelHandle}>Cancel</button>
+                </li>
+            )}
+            {!isEditing &&
+                (
+                <div className="todo-item">
+                    <input type="checkbox" checked={props.completed}/>
+                    <li>
+                        <div className="todo-item__title">{edit.title}</div>
+                    </li>
+                    <div>
+                        <button className="todo-item__btnEdit" onClick={editingHandle} >Edit</button> 
+                        <button className="todo-item__btnDelete" type="button" >Delete</button>
+                    </div>
+                </div>
+                )
+            }
         </div>
     );
 };
