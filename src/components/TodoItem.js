@@ -8,10 +8,11 @@ const TodoItem = (props) => {
     const [edit, setEdit] = useState({
         id: null,
         title: props.title
-    })
+    });
+
 
     const editingHandle = () => {
-        console.log(props.id);
+        // console.log(props.id);
         setIsEditing(true);
     };
 
@@ -26,7 +27,7 @@ const TodoItem = (props) => {
     const saveValueHandle = (event) => {
 
         setIsEditing(false);
-        console.log(edit);
+        // console.log(edit);
         props.editTodo(edit);
     };
 
@@ -35,12 +36,15 @@ const TodoItem = (props) => {
         setIsEditing(false);
     };
 
+    const deleteHandle = () => {
+        
+        props.deleteTodo(props.id);
+    };
+
     return (
         <div >
             {isEditing && (
                 <li className="todo-item__save">
-                    
-                    {/* <input type="text" name="editValue" value={edit.title}  onChange={editValueHandle}></input> */}
                     <input type="text" name="editValue" value={edit.title} onChange={changeValueHandle}></input>
                     <button className="todo-item__btnSave" onClick={saveValueHandle}>Save</button>
                     <button className="todo-item__btnDelete" onClick={cancelHandle}>Cancel</button>
@@ -55,7 +59,7 @@ const TodoItem = (props) => {
                     </li>
                     <div>
                         <button className="todo-item__btnEdit" onClick={editingHandle} >Edit</button> 
-                        <button className="todo-item__btnDelete" type="button" >Delete</button>
+                        <button className="todo-item__btnDelete" type="button" onClick={deleteHandle}>Delete</button>
                     </div>
                 </div>
                 )

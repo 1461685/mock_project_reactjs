@@ -28,7 +28,7 @@ const TodoList = (props) => {
         const newItem = [item, ...todoItems];
 
         setTodoItems(newItem);
-        console.log(...todoItems)
+        // console.log(...todoItems);
     };
 
     const editTodo = (todo) => {
@@ -41,8 +41,15 @@ const TodoList = (props) => {
         const newTitle = todo.title;
         // console.log(newTitle);
         todoItems.map((item) => (item.id === todo.id ? item.title = newTitle : item));
-        console.log(todoItems);
+        // console.log(todoItems);
         
+    };
+
+    const deleteTodo = (todoId) => {
+        // console.log(todoId);
+        const removeItem = [...todoItems].filter((item) => (item.id !== todoId ));
+        setTodoItems(removeItem);
+        // console.log(removeItem);
     };
 
     return (
@@ -61,6 +68,7 @@ const TodoList = (props) => {
                         title={item.title}
                         completed={item.completed}
                         editTodo={editTodo}
+                        deleteTodo={deleteTodo}
                     />)
                 ))
             }
