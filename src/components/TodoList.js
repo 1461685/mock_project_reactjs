@@ -28,7 +28,7 @@ const TodoList = (props) => {
         const newItem = [item, ...todoItems];
 
         setTodoItems(newItem);
-        // console.log(...todoItems);
+
     };
 
     const editTodo = (todo) => {
@@ -39,33 +39,23 @@ const TodoList = (props) => {
         }
 
         const newTitle = todo.title;
-        // console.log(newTitle);
-        todoItems.map((item) => (item.id === todo.id ? item.title = newTitle : item));
-        // console.log(todoItems);
-        
+        todoItems.map((item) => (item.id === todo.id ? item.title = newTitle : item));  
     };
 
     const deleteTodo = (todoId) => {
-        // console.log(todoId);
         const removeItem = [...todoItems].filter((item) => (item.id !== todoId ));
         setTodoItems(removeItem);
-        // console.log(removeItem);
     };
 
     const completeTodo = (todo) => {
-        // console.log(!todo.completed);
         todoItems.map((item) => (item.id === todo.id ? item.completed = !todo.completed : item));
-        console.log(todoItems);
     };
 
     return (
         // <div className="todo-list">
         <ul className="todo-list">
             <TodoForm onSubmit={addTodo}/>
-            {/* <TodoItem title={items[0].title} completed={items[0].completed}/>
-                <TodoItem title={items[1].title} completed={items[1].completed}/>
-                <TodoItem title={items[2].title} completed={items[2].completed}/>
-                <TodoItem title={items[3].title} completed={items[3].completed}/> */}
+
             {todoItems.map(
                 ((item) => (
                     <TodoItem 
@@ -79,7 +69,6 @@ const TodoList = (props) => {
                     />)
                 ))
             }
-            {/* <TodoItem todoItems={todoItems}/> */}
         </ul>
         // </div>
     );

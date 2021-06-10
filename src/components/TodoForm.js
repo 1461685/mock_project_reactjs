@@ -8,7 +8,6 @@ const TodoForm = (props) => {
 
     const changeHandle = (event) => {
         setInputAddTodo(event.target.value);
-        // console.log(inputAddTodo);
     };
 
     const submitHandle = (event) => {
@@ -22,8 +21,6 @@ const TodoForm = (props) => {
 
         setInputAddTodo('');//refresh input field to blank after press add button
     };
-
-    
 
     return (
         <form className="todoForm" onSubmit={submitHandle}>
