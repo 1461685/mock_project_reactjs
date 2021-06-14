@@ -4,15 +4,14 @@ import './App.css';
 import TodoHeader from './components/TodoHeader';
 import TodoList from './components/TodoList';
 
-
 const App = () => {
-  return (
-    <div className="outer-box">
-      <TodoHeader />
-      {/* <TodoForm /> */}
-      <TodoList />
-    </div>
-  );
-}
+	return (
+		<div className='outer-box'>
+			<TodoHeader />
+			{/* <TodoForm /> */}
+			<TodoList />
+		</div>
+	);
+};
 
 export default App;
