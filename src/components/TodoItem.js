@@ -15,6 +15,7 @@ const TodoItem = (props) => {
 		title: props.title,
 	});
 	//Complete state
+	const [isCompleted, setIsCompleted] = useState(props.completed);
 	const [complete, setComplete] = useState({
 		id: props.id,
 		completed: props.completed,
@@ -60,7 +61,10 @@ const TodoItem = (props) => {
 			id: props.id,
 			completed: event.target.checked,
 		});
+		setIsCompleted(event.target.checked);
 		props.completeTodo(complete);
+		// console.log(isEditing);
+		// console.log(!isCompleted);
 	};
 
 	return (
@@ -110,30 +114,42 @@ const TodoItem = (props) => {
 						{!isSave && <div className='todo-item__title'>{cancelValue}</div>}
 						{/* <div className='todo-item__title'>{edit.title}</div> */}
 					</li>
-					<div>
-						{/* <button className='todo-item__btnEdit' onClick={editingHandle}>
+					{/* <div> */}
+					{/* <button className='todo-item__btnEdit' onClick={editingHandle}>
 							Edit
 						</button> */}
-						{/* <button
+					{/* <button
 							className='todo-item__btnDelete'
 							type='button'
 							onClick={deleteHandle}
 						>
 							Delete
 						</button> */}
-						{/* <Button variant='contained' color='primary' onClick={editingHandle}>
+					{/* <Button variant='contained' color='primary' onClick={editingHandle}>
 							Edit
 						</Button> */}
-						{/* <Button
+					{/* <Button
 							variant='contained'
 							color='secondary'
 							onClick={deleteHandle}
 						>
 							Delete
 						</Button> */}
-						<EditIcon color='primary' onClick={editingHandle}></EditIcon>
-						<Delete color='secondary' onClick={deleteHandle}></Delete>
-					</div>
+					{/* <EditIcon color='primary' onClick={editingHandle}></EditIcon>
+						<Delete color='secondary' onClick={deleteHandle}></Delete> */}
+					{/* </div> */}
+					{isCompleted && (
+						<div>
+							<EditIcon color='disabled'></EditIcon>
+							<Delete color='disabled'></Delete>
+						</div>
+					)}
+					{!isCompleted && (
+						<div>
+							<EditIcon color='primary' onClick={editingHandle}></EditIcon>
+							<Delete color='secondary' onClick={deleteHandle}></Delete>
+						</div>
+					)}
 				</div>
 			)}
 		</div>
