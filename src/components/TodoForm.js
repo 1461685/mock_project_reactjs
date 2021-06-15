@@ -24,17 +24,6 @@ const TodoForm = (props) => {
 	};
 
 	return (
-		// <form className='todoForm' onSubmit={submitHandle}>
-		// 	<input
-		// 		type='text'
-		// 		placeholder='Add new todo things...'
-		// 		value={inputAddTodo}
-		// 		onChange={changeHandle}
-		// 	></input>
-		// 	<button className='btn-addTodo' name='btn-add'>
-		// 		Add
-		// 	</button>
-		// </form>
 		<form>
 			<TextField
 				variant='outlined'

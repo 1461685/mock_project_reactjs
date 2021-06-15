@@ -63,26 +63,12 @@ const TodoItem = (props) => {
 		});
 		setIsCompleted(event.target.checked);
 		props.completeTodo(complete);
-		// console.log(isEditing);
-		// console.log(!isCompleted);
 	};
 
 	return (
 		<div>
 			{isEditing && (
 				<li className='todo-item__save'>
-					{/* <input
-						type='text'
-						name='editValue'
-						value={edit.title}
-						onChange={changeValueHandle}
-					></input> */}
-					{/* <button className='todo-item__btnSave' onClick={saveValueHandle}>
-						Save
-					</button>
-					<button className='todo-item__btnDelete' onClick={cancelHandle}>
-						Cancel
-					</button> */}
 					<TextField
 						variant='outlined'
 						value={edit.title}
@@ -98,12 +84,6 @@ const TodoItem = (props) => {
 			)}
 			{!isEditing && (
 				<div className='todo-item'>
-					{/* // <div className={isCompleted ? "todo-item__complete": "todo=item"}> */}
-					{/* <input
-						type='checkbox'
-						checked={complete.completed}
-						onChange={completedTodoHandle}
-					/> */}
 					<Checkbox
 						color='primary'
 						checked={complete.completed}
@@ -112,32 +92,7 @@ const TodoItem = (props) => {
 					<li>
 						{isSave && <div className='todo-item__title'>{edit.title}</div>}
 						{!isSave && <div className='todo-item__title'>{cancelValue}</div>}
-						{/* <div className='todo-item__title'>{edit.title}</div> */}
 					</li>
-					{/* <div> */}
-					{/* <button className='todo-item__btnEdit' onClick={editingHandle}>
-							Edit
-						</button> */}
-					{/* <button
-							className='todo-item__btnDelete'
-							type='button'
-							onClick={deleteHandle}
-						>
-							Delete
-						</button> */}
-					{/* <Button variant='contained' color='primary' onClick={editingHandle}>
-							Edit
-						</Button> */}
-					{/* <Button
-							variant='contained'
-							color='secondary'
-							onClick={deleteHandle}
-						>
-							Delete
-						</Button> */}
-					{/* <EditIcon color='primary' onClick={editingHandle}></EditIcon>
-						<Delete color='secondary' onClick={deleteHandle}></Delete> */}
-					{/* </div> */}
 					{isCompleted && (
 						<div>
 							<EditIcon color='disabled'></EditIcon>

@@ -51,7 +51,6 @@ const TodoList = (props) => {
 	};
 
 	return (
-		// <div className="todo-list">
 		<ul className='todo-list'>
 			<TodoForm onClick={addTodo} />
 
@@ -67,7 +66,6 @@ const TodoList = (props) => {
 				/>
 			))}
 		</ul>
-		// </div>
 	);
 };
 
