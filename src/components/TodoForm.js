@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import TextField from '@material-ui/core/TextField';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import './TodoForm.css';
 
@@ -12,7 +14,7 @@ const TodoForm = (props) => {
 	const submitHandle = (event) => {
 		event.preventDefault(); //cancels the event if it is canceled without stopping the propagation of the event to another part.
 
-		props.onSubmit({
+		props.onClick({
 			id: Math.random().toString(),
 			title: inputAddTodo,
 			completed: false,
@@ -22,16 +24,27 @@ const TodoForm = (props) => {
 	};
 
 	return (
-		<form className='todoForm' onSubmit={submitHandle}>
-			<input
-				type='text'
+		// <form className='todoForm' onSubmit={submitHandle}>
+		// 	<input
+		// 		type='text'
+		// 		placeholder='Add new todo things...'
+		// 		value={inputAddTodo}
+		// 		onChange={changeHandle}
+		// 	></input>
+		// 	<button className='btn-addTodo' name='btn-add'>
+		// 		Add
+		// 	</button>
+		// </form>
+		<form>
+			<TextField
+				variant='outlined'
 				placeholder='Add new todo things...'
 				value={inputAddTodo}
 				onChange={changeHandle}
-			></input>
-			<button className='btn-addTodo' name='btn-add'>
+			></TextField>
+			<AddCircleIcon color='primary' fontSize='large' onClick={submitHandle}>
 				Add
-			</button>
+			</AddCircleIcon>
 		</form>
 	);
 };

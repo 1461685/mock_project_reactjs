@@ -53,7 +53,7 @@ const TodoList = (props) => {
 	return (
 		// <div className="todo-list">
 		<ul className='todo-list'>
-			<TodoForm onSubmit={addTodo} />
+			<TodoForm onClick={addTodo} />
 
 			{todoItems.map((item) => (
 				<TodoItem
