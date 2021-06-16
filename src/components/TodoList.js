@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
+import List from '@material-ui/core/List';
 
 import './TodoList.css';
 
@@ -51,7 +52,7 @@ const TodoList = (props) => {
 	};
 
 	return (
-		<ul className='todo-list'>
+		<List>
 			<TodoForm onClick={addTodo} />
 
 			{todoItems.map((item) => (
@@ -65,7 +66,7 @@ const TodoList = (props) => {
 					completeTodo={completeTodo}
 				/>
 			))}
-		</ul>
+		</List>
 	);
 };
 

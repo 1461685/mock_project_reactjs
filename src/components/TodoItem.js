@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
-import Checkbox from '@material-ui/core/Checkbox';
 import EditIcon from '@material-ui/icons/Edit';
 import Delete from '@material-ui/icons/Delete';
-import TextField from '@material-ui/core/TextField';
+import SaveAltOutlinedIcon from '@material-ui/icons/SaveAltOutlined';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import { Checkbox, TextField, ListItem } from '@material-ui/core';
 
 import './TodoItem.css';
 
@@ -68,31 +68,61 @@ const TodoItem = (props) => {
 	return (
 		<div>
 			{isEditing && (
-				<li className='todo-item__save'>
+				<ListItem
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
+						borderRadius: '12px',
+						margin: '1em 0',
+					}}
+				>
 					<TextField
 						variant='outlined'
 						value={edit.title}
 						onChange={changeValueHandle}
 					></TextField>
-					<Button variant='contained' color='primary' onClick={saveValueHandle}>
-						Save
-					</Button>
-					<Button variant='contained' color='secondary' onClick={cancelHandle}>
-						Cancel
-					</Button>
-				</li>
+					<div>
+						<SaveAltOutlinedIcon
+							variant='contained'
+							color='primary'
+							fontSize='large'
+							onClick={saveValueHandle}
+						>
+							Save
+						</SaveAltOutlinedIcon>
+						<CancelOutlinedIcon
+							variant='contained'
+							color='secondary'
+							fontSize='large'
+							onClick={cancelHandle}
+						>
+							Cancel
+						</CancelOutlinedIcon>
+					</div>
+				</ListItem>
 			)}
 			{!isEditing && (
-				<div className='todo-item'>
+				<ListItem
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
+						borderRadius: '12px',
+						margin: '1rem 0',
+					}}
+				>
 					<Checkbox
 						color='primary'
 						checked={complete.completed}
 						onChange={completedTodoHandle}
 					></Checkbox>
-					<li>
-						{isSave && <div className='todo-item__title'>{edit.title}</div>}
-						{!isSave && <div className='todo-item__title'>{cancelValue}</div>}
-					</li>
+					<ListItem
+						style={{ color: 'black', fontSize: '18px', fontWeight: '500' }}
+					>
+						{isSave && <div>{edit.title}</div>}
+						{!isSave && <div>{cancelValue}</div>}
+					</ListItem>
 					{isCompleted && (
 						<div>
 							<EditIcon color='disabled'></EditIcon>
@@ -105,7 +135,7 @@ const TodoItem = (props) => {
 							<Delete color='secondary' onClick={deleteHandle}></Delete>
 						</div>
 					)}
-				</div>
+				</ListItem>
 			)}
 		</div>
 	);
