@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { TextField } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import './TodoForm.css';
@@ -28,7 +28,6 @@ const TodoForm = (props) => {
 			<TextField
 				variant='outlined'
 				placeholder='Add new todo things...'
-				value={inputAddTodo}
 				onChange={changeHandle}
 			></TextField>
 			<AddCircleIcon color='primary' fontSize='large' onClick={submitHandle}>
