@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import List from '@material-ui/core/List';
+import { useSelector } from 'react-redux';
 
 import './TodoList.css';
 
@@ -17,16 +18,16 @@ const TodoList = (props) => {
 
 	// const [todoItems, setTodoItems] = useState([]);
 
-	const addTodo = (item) => {
-		//RegExp test method to test whether a string val is empty or only contains spaces.
-		if (!item.title || /^\s*$/.test(item.title)) {
-			return;
-		}
+	// const addTodo = (item) => {
+	// 	//RegExp test method to test whether a string val is empty or only contains spaces.
+	// 	if (!item.title || /^\s*$/.test(item.title)) {
+	// 		return;
+	// 	}
 
-		const newItem = [item, ...todoItems];
+	// 	const newItem = [item, ...todoItems];
 
-		setTodoItems(newItem);
-	};
+	// 	setTodoItems(newItem);
+	// };
 
 	const editTodo = (todo) => {
 		//RegExp test method to test whether a string val is empty or only contains spaces.
@@ -51,11 +52,33 @@ const TodoList = (props) => {
 		);
 	};
 
+	// Redux
+	const todoList = useSelector((state) => state.todo.list);
+	console.log('Todo list: ', todoList);
+
+	// const handleAddTodoClick = () => {
+	// 	// const newTodo = {
+	// 	// 	id:
+	// 	// }
+	// };
+
 	return (
 		<List>
-			<TodoForm onClick={addTodo} />
+			{/* <TodoForm onClick={addTodo} /> */}
 
-			{todoItems.map((item) => (
+			{/* {todoItems.map((item) => (
+				<TodoItem
+					key={item.id}
+					id={item.id}
+					title={item.title}
+					completed={item.completed}
+					editTodo={editTodo}
+					deleteTodo={deleteTodo}
+					completeTodo={completeTodo}
+				/>
+			))} */}
+			<TodoForm />
+			{todoList.map((item) => (
 				<TodoItem
 					key={item.id}
 					id={item.id}
