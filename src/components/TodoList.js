@@ -56,12 +56,6 @@ const TodoList = (props) => {
 	const todoList = useSelector((state) => state.todo.list);
 	console.log('Todo list: ', todoList);
 
-	// const handleAddTodoClick = () => {
-	// 	// const newTodo = {
-	// 	// 	id:
-	// 	// }
-	// };
-
 	return (
 		<List>
 			{/* <TodoForm onClick={addTodo} /> */}

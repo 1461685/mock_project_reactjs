@@ -6,6 +6,8 @@ import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import { Checkbox, TextField, ListItem } from '@material-ui/core';
 
 import './TodoItem.css';
+import { deleteTodo, completeTodo } from '../actions/todo';
+import { useDispatch } from 'react-redux';
 
 const TodoItem = (props) => {
 	//Edit state
@@ -52,22 +54,43 @@ const TodoItem = (props) => {
 		setIsSave(false);
 	};
 
-	const deleteHandle = () => {
-		props.deleteTodo(props.id);
+	// const deleteHandle = () => {
+	// 	props.deleteTodo(props.id);
+	// };
+
+	// const completedTodoHandle = (event) => {
+	// 	setComplete({
+	// 		id: props.id,
+	// 		completed: event.target.checked,
+	// 	});
+	// 	setIsCompleted(event.target.checked);
+	// 	props.completeTodo(complete);
+	// };
+
+	//Redux
+	const dispatch = useDispatch();
+	const handleDeleteTodoClick = () => {
+		const deleteItem = {
+			id: props.id,
+		};
+		const action = deleteTodo(deleteItem);
+		dispatch(action);
+		console.log(props.id);
+		console.log(action.payload.id);
 	};
 
-	const completedTodoHandle = (event) => {
-		setComplete({
+	const handleCompleteTodoClick = () => {
+		const completeItem = {
 			id: props.id,
-			completed: event.target.checked,
-		});
-		setIsCompleted(event.target.checked);
-		props.completeTodo(complete);
+			completed: !props.completed,
+		};
+		const action = completeTodo(completeItem);
+		dispatch(action);
 	};
 
 	return (
 		<div>
-			{isEditing && (
+			{/* {isEditing && (
 				<ListItem
 					style={{
 						display: 'flex',
@@ -101,8 +124,8 @@ const TodoItem = (props) => {
 						</CancelOutlinedIcon>
 					</div>
 				</ListItem>
-			)}
-			{!isEditing && (
+			)} */}
+			{/* {!isEditing && (
 				<ListItem
 					style={{
 						display: 'flex',
@@ -136,7 +159,27 @@ const TodoItem = (props) => {
 						</div>
 					)}
 				</ListItem>
-			)}
+			)} */}
+			<ListItem
+				style={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
+					borderRadius: '12px',
+					margin: '1rem 0',
+				}}
+			>
+				<Checkbox
+					color='primary'
+					checked={props.completed}
+					onChange={handleCompleteTodoClick}
+				></Checkbox>
+				<div>{props.title}</div>
+				<div>
+					<EditIcon color='primary' onClick={editingHandle}></EditIcon>
+					<Delete color='secondary' onClick={handleDeleteTodoClick}></Delete>
+				</div>
+			</ListItem>
 		</div>
 	);
 };

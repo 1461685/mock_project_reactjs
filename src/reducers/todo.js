@@ -22,7 +22,10 @@ const todoReducer = (state = initialState, action) => {
 			return state;
 		}
 		case 'DELETE_TOTO': {
-			return state;
+			const newList = state.list.filter(
+				(todo) => todo.id !== action.payload.id
+			);
+			return newList;
 		}
 		case 'EDIT_TODO': {
 			return state;

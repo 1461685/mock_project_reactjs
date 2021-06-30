@@ -19,7 +19,7 @@ export const editTodo = (todo) => {
 	};
 };
 
-export const deleteTODO = (todo) => {
+export const deleteTodo = (todo) => {
 	return {
 		type: 'DELETE_TODO',
 		payload: todo,
