@@ -6,7 +6,7 @@ import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import { Checkbox, TextField, ListItem } from '@material-ui/core';
 
 import './TodoItem.css';
-import { deleteTodo, completeTodo } from '../actions/todo';
+import { deleteTodo, completeTodo, editTodo } from '../actions/todo';
 import { useDispatch } from 'react-redux';
 
 const TodoItem = (props) => {
@@ -17,20 +17,20 @@ const TodoItem = (props) => {
 		title: props.title,
 	});
 	//Complete state
-	const [isCompleted, setIsCompleted] = useState(props.completed);
-	const [complete, setComplete] = useState({
-		id: props.id,
-		completed: props.completed,
-	});
+	// const [isCompleted, setIsCompleted] = useState(props.completed);
+	// const [complete, setComplete] = useState({
+	// 	id: props.id,
+	// 	completed: props.completed,
+	// });
 
 	//Save state
 	const [isSave, setIsSave] = useState(false);
 
 	const cancelValue = props.title;
 
-	const editingHandle = () => {
-		setIsEditing(true);
-	};
+	// const editingHandle = () => {
+	// 	setIsEditing(true);
+	// };
 
 	const changeValueHandle = (event) => {
 		setEdit({
@@ -40,9 +40,16 @@ const TodoItem = (props) => {
 	};
 
 	const saveValueHandle = () => {
-		props.editTodo(edit);
+		// props.editTodo(edit);
 		setIsEditing(false);
-		setIsSave(true);
+		// setIsSave(true);
+		const editItem = {
+			id: props.id,
+			title: edit.title,
+		};
+		console.log(editItem);
+		const action = editTodo(editItem);
+		dispatch(action);
 	};
 
 	const cancelHandle = () => {
@@ -87,6 +94,17 @@ const TodoItem = (props) => {
 		console.log(completeItem);
 		const action = completeTodo(completeItem);
 		dispatch(action);
+	};
+
+	const handleEditTodoClick = () => {
+		// const editItem = {
+		// 	id: props.id,
+		// 	title: '',
+		// };
+		// console.log(editItem);
+		// const action = editTodo(editItem);
+		// dispatch(action);
+		setIsEditing(true);
 	};
 
 	return (
@@ -161,34 +179,77 @@ const TodoItem = (props) => {
 					)}
 				</ListItem>
 			)} */}
-			<ListItem
-				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
-					borderRadius: '12px',
-					margin: '1rem 0',
-				}}
-			>
-				<Checkbox
-					color='primary'
-					checked={props.completed}
-					onChange={handleCompleteTodoClick}
-				></Checkbox>
-				<div>{props.title}</div>
-				{!props.completed && (
+			{!isEditing && (
+				<ListItem
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
+						borderRadius: '12px',
+						margin: '1rem 0',
+					}}
+				>
+					<Checkbox
+						color='primary'
+						checked={props.completed}
+						onChange={handleCompleteTodoClick}
+					></Checkbox>
+					<div>{props.title}</div>
+					{!props.completed && (
+						<div>
+							<EditIcon
+								color='primary'
+								onClick={handleEditTodoClick}
+							></EditIcon>
+							<Delete
+								color='secondary'
+								onClick={handleDeleteTodoClick}
+							></Delete>
+						</div>
+					)}
+					{props.completed && (
+						<div>
+							<EditIcon color='disabled'></EditIcon>
+							<Delete color='disabled'></Delete>
+						</div>
+					)}
+				</ListItem>
+			)}
+			{isEditing && (
+				<ListItem
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
+						borderRadius: '12px',
+						margin: '1em 0',
+					}}
+				>
+					<TextField
+						variant='outlined'
+						value={edit.title}
+						onChange={changeValueHandle}
+					></TextField>
 					<div>
-						<EditIcon color='primary' onClick={editingHandle}></EditIcon>
-						<Delete color='secondary' onClick={handleDeleteTodoClick}></Delete>
+						<SaveAltOutlinedIcon
+							variant='contained'
+							color='primary'
+							fontSize='large'
+							onClick={saveValueHandle}
+						>
+							Save
+						</SaveAltOutlinedIcon>
+						<CancelOutlinedIcon
+							variant='contained'
+							color='secondary'
+							fontSize='large'
+							onClick={cancelHandle}
+						>
+							Cancel
+						</CancelOutlinedIcon>
 					</div>
-				)}
-				{props.completed && (
-					<div>
-						<EditIcon color='disabled'></EditIcon>
-						<Delete color='disabled'></Delete>
-					</div>
-				)}
-			</ListItem>
+				</ListItem>
+			)}
 		</div>
 	);
 };

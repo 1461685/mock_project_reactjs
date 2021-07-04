@@ -46,7 +46,14 @@ const todoReducer = (state = initialState, action) => {
 			};
 		}
 		case 'EDIT_TODO': {
-			return state;
+			return {
+				...state,
+				list: state.list.map((todo) =>
+					todo.id === action.payload.id
+						? { ...todo, title: action.payload.title }
+						: todo
+				),
+			};
 		}
 		default:
 			return state;
