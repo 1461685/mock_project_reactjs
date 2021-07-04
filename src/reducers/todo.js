@@ -19,13 +19,31 @@ const todoReducer = (state = initialState, action) => {
 			};
 		}
 		case 'COMPLETE_TODO': {
-			return state;
+			// return state;
+			// const newList = state.list.map((todo) =>
+			// 	todo.id === action.payload.id
+			// 		? { ...todo, completed: action.payload.id }
+			// 		: todo
+			// );
+			return {
+				...state,
+				list: state.list.map((todo) =>
+					todo.id === action.payload.id
+						? { ...todo, completed: action.payload.completed }
+						: todo
+				),
+			};
 		}
-		case 'DELETE_TOTO': {
-			const newList = state.list.filter(
-				(todo) => todo.id !== action.payload.id
-			);
-			return newList;
+		case 'DELETE_TODO': {
+			// const newList = state.list.filter(
+			// 	(todo) => todo.id !== action.payload.id
+			// );
+			// return newList;
+			// return state.list.filter((todo) => todo.id !== action.payload.id);
+			return {
+				...state,
+				list: state.list.filter((todo) => todo.id !== action.payload.id),
+			};
 		}
 		case 'EDIT_TODO': {
 			return state;

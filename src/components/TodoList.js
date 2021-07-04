@@ -73,14 +73,20 @@ const TodoList = (props) => {
 			))} */}
 			<TodoForm />
 			{todoList.map((item) => (
+				// <TodoItem
+				// 	key={item.id}
+				// 	id={item.id}
+				// 	title={item.title}
+				// 	completed={item.completed}
+				// 	editTodo={editTodo}
+				// 	deleteTodo={deleteTodo}
+				// 	completeTodo={completeTodo}
+				// />
 				<TodoItem
 					key={item.id}
 					id={item.id}
 					title={item.title}
 					completed={item.completed}
-					editTodo={editTodo}
-					deleteTodo={deleteTodo}
-					completeTodo={completeTodo}
 				/>
 			))}
 		</List>

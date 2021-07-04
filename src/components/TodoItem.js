@@ -84,6 +84,7 @@ const TodoItem = (props) => {
 			id: props.id,
 			completed: !props.completed,
 		};
+		console.log(completeItem);
 		const action = completeTodo(completeItem);
 		dispatch(action);
 	};
@@ -175,10 +176,18 @@ const TodoItem = (props) => {
 					onChange={handleCompleteTodoClick}
 				></Checkbox>
 				<div>{props.title}</div>
-				<div>
-					<EditIcon color='primary' onClick={editingHandle}></EditIcon>
-					<Delete color='secondary' onClick={handleDeleteTodoClick}></Delete>
-				</div>
+				{!props.completed && (
+					<div>
+						<EditIcon color='primary' onClick={editingHandle}></EditIcon>
+						<Delete color='secondary' onClick={handleDeleteTodoClick}></Delete>
+					</div>
+				)}
+				{props.completed && (
+					<div>
+						<EditIcon color='disabled'></EditIcon>
+						<Delete color='disabled'></Delete>
+					</div>
+				)}
 			</ListItem>
 		</div>
 	);
