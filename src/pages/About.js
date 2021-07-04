@@ -1,8 +1,6 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 
-import './TodoHeader.css';
-
 const useStyle = makeStyles({
 	root: {
 		color: '#01579b',
@@ -10,15 +8,20 @@ const useStyle = makeStyles({
 		width: '100%',
 		marginBottom: '10px',
 	},
+	paragraph: {
+		textAlign: 'center',
+		color: '#212121',
+	},
 });
 
-const TodoHeader = () => {
+const About = () => {
 	const classes = useStyle();
 	return (
 		<div className={classes.root}>
-			<Typography variant='h3'>React Todo App</Typography>
+			<Typography variant='h3'>About this App</Typography>
+			<p className={classes.paragraph}>This is Todo app using React JS.</p>
 		</div>
 	);
 };
 
-export default TodoHeader;
+export default About;

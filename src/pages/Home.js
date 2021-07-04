@@ -1,8 +1,6 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 
-import './TodoHeader.css';
-
 const useStyle = makeStyles({
 	root: {
 		color: '#01579b',
@@ -12,13 +10,13 @@ const useStyle = makeStyles({
 	},
 });
 
-const TodoHeader = () => {
+const Home = () => {
 	const classes = useStyle();
 	return (
 		<div className={classes.root}>
-			<Typography variant='h3'>React Todo App</Typography>
+			<Typography variant='h3'>Welcome to Todo App</Typography>
 		</div>
 	);
 };
 
-export default TodoHeader;
+export default Home;

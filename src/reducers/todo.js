@@ -19,12 +19,6 @@ const todoReducer = (state = initialState, action) => {
 			};
 		}
 		case 'COMPLETE_TODO': {
-			// return state;
-			// const newList = state.list.map((todo) =>
-			// 	todo.id === action.payload.id
-			// 		? { ...todo, completed: action.payload.id }
-			// 		: todo
-			// );
 			return {
 				...state,
 				list: state.list.map((todo) =>
@@ -35,11 +29,6 @@ const todoReducer = (state = initialState, action) => {
 			};
 		}
 		case 'DELETE_TODO': {
-			// const newList = state.list.filter(
-			// 	(todo) => todo.id !== action.payload.id
-			// );
-			// return newList;
-			// return state.list.filter((todo) => todo.id !== action.payload.id);
 			return {
 				...state,
 				list: state.list.filter((todo) => todo.id !== action.payload.id),
