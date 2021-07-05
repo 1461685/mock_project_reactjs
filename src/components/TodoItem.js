@@ -33,7 +33,7 @@ const TodoItem = (props) => {
 			id: props.id,
 			title: edit.title,
 		};
-		console.log(editItem);
+		// console.log(editItem);
 		const action = editTodo(editItem);
 		dispatch(action);
 	};
@@ -54,8 +54,8 @@ const TodoItem = (props) => {
 		};
 		const action = deleteTodo(deleteItem);
 		dispatch(action);
-		console.log(props.id);
-		console.log(action.payload.id);
+		// console.log(props.id);
+		// console.log(action.payload.id);
 	};
 
 	const handleCompleteTodoClick = () => {
@@ -63,7 +63,7 @@ const TodoItem = (props) => {
 			id: props.id,
 			completed: !props.completed,
 		};
-		console.log(completeItem);
+		// console.log(completeItem);
 		const action = completeTodo(completeItem);
 		dispatch(action);
 	};
